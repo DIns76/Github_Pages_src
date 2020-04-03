@@ -43,6 +43,7 @@ jobs:
           git config -l
           npm i -g hexo-cli
           npm i
+
     - name: Deploy
-        run:
-                hexo generate && hexo deploy
+      run:
+          hexo generate && hexo deploy
