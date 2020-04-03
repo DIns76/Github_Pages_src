@@ -45,7 +45,6 @@ jobs:
           npm i
       # install pandoc
           #curl -s -L https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-linux.tar.gz | tar xvzf - -C $RUNNER_TOOL_CACHE/
-
       - name: Deploy
         run: 
           # add pandoc to PATH
