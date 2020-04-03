@@ -37,8 +37,8 @@ $ hexo d	#部署，在线查看效果;不过注意这个会把username.github.io
 ```
 #### Github Action使用
 
-  结合网上教程来看：配置好Action脚本后；本地写好文章，git push进github，Github Action检测到有变动，之前在本地输入hexo cl && hexo g && hexo d的命令直接在github上运行，然后直接部署到Github pages上。
-  所以配置好Action后，只要git push，然后浏览器输入username.github.io就可以看到，push上去的文章了。
+  结合网上教程来看：配置好Action脚本后；本地写好文章，``git push`` 进github，``Github Action`` 检测到有变动，之前在本地输入 ``hexo cl && hexo g && hexo d`` 的命令直接在github上运行，然后直接部署到``Github pages`` 上。
+  所以配置好Action后，只要``git push`` ，然后浏览器输入 ``username.github.io`` 就可以看到，push上去的文章了。
 ##### 新建空库
 
   先在Github上新建一个仓库，用于存放hexo init生成的源代码；username.github.io是hexo d推送的public/下的所有文件。
@@ -70,6 +70,7 @@ ssh-keygen -t rsa -b 4096 -f ~/.ssh/github-actions-deploy
 具体参考：
  - [Github Actions 测试 - 自动部署 Hexo](https://xiaopc.org/2019/08/29/github-actions-%E6%B5%8B%E8%AF%95-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hexo/)
  - [GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
+ - [configuring-a-workflow](https://help.github.com/cn/actions/configuring-and-managing-workflows/configuring-a-workflow)
 
 
 注意：
@@ -119,6 +120,7 @@ root: /blog/
 5. 继续学习 ``Git`` 使用
     - 了解git历史[10 years of git by atlassian](https://www.atlassian.com/git/articles/10-years-of-git)
     - [Pro Git_cn](https://git-scm.com/book/zh/v2)
+    - [常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 ### 个人觉得简介明了的主题：
 
@@ -128,6 +130,9 @@ root: /blog/
 2. [MaterialDesign风格主题 MDM](https://github.com/TonyChenn/mdm)
 3. [PointingToTheMoon](https://github.com/yk-liu/PointingToTheMoon)
 4. [hexo-theme-material-indigo](https://github.com/yscoder/hexo-theme-indigo)
+5. [这个Next主题的背景动效有点意思](https://gythialy.github.io/deploy-hexo-to-github-pages-via-github-actions/)
+6. [极简主题scribble](https://github.com/DIns76/scribble)
+7. [两色主题Ghost's Casper // Jasper2](https://github.com/DIns76/jasper2)
 
 ### 其它参考链接
 - [通過travis-ci或者GitHub Actions自動化部署GitHub Pages和Coding Pages](https://jerryc.me/posts/74006f42/#Travis-CI)
