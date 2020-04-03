@@ -24,8 +24,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           # set git infomation
-          git config --global user.name 'xiaopc'
-          git config --global user.email 'xiaopc@users.noreply.github.com'
+          git config --global user.name 'DIns76'
+          git config --global user.email 'dzx7736@gmail.com'
           # install dependencies
           npm i -g hexo-cli
           npm i
