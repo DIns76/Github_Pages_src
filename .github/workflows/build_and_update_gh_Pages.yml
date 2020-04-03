@@ -44,8 +44,5 @@ jobs:
           npm i -g hexo-cli
           npm i
     - name: Deploy
-        run: 
-          # add pandoc to PATH
-          #export PATH="$PATH:$RUNNER_TOOL_CACHE/pandoc-2.7.3/bin"
-          # publish
-          hexo generate && hexo deploy
+        run:
+                hexo generate && hexo deploy
