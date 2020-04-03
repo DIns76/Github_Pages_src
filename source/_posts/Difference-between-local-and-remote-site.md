@@ -66,9 +66,7 @@ ssh-keygen -t rsa -b 4096 -f ~/.ssh/github-actions-deploy
 ##### 源码仓库添加 Actions 配置
 
   如果在网页编辑配置文件的话，选择Set up a workflow yourself;如果是在本地目录提交配置文件的话，将配置文件存至 .github/workflows/*任意名*.yml。
-```
-
-```
+  还是根据以下参考改吧，我自己写的总是``paser error``
 具体参考：
  - [Github Actions 测试 - 自动部署 Hexo](https://xiaopc.org/2019/08/29/github-actions-%E6%B5%8B%E8%AF%95-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hexo/)
  - [GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
