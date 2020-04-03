@@ -18,17 +18,60 @@ INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git
 INFO  Start blogging with Hexo!	#出现这条信息，即为成功
 
 $ cd blog_src
-$ hexo g	#生成blog
+$ hexo g	#生成本地blog
 $ hexo s	#本地预览
 INFO  Start processing
 INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.
 	#输入以上网址查看没问题，开始复制以前的文章，以下**不可复制！**
-$ cp ~/$(username.github.io)/source/_post/hello-world.md ~/blog/source/hello-world.md
+$ cp ~/$(username).github.io/source/_post/hello-world.md ~/blog/source/hello-world.md
 $ hexo clean
-$ hexo g && hexo s	#生成后再次预览，没问题后部署，在线查看效果
+$ hexo g && hexo s	#生成后再次预览
+$ vim ~/blog/_config.yml #没问题后修改blog/_config.yml里的URL,见下方解决方案;还有deployment（仓库页面 Clone and Download - Use SSH 里的地址）
+	# Deployment
+	## Docs: https://hexo.io/docs/deployment.html
+	deploy:
+  	type: 'git'
+  	repository: git@github.com:$(username)/$(username).github.io.git
+  	branch: master
+$ hexo d	#部署，在线查看效果;不过注意这个会把username.github.io仓库下的master分支直接全部覆盖！
 ```
-  接下来，研究下Github Action：
+#### Github Action使用
 
+  结合网上教程来看：配置好Action脚本后；本地写好文章，git push进github，Github Action检测到有变动，之前在本地输入hexo cl && hexo g && hexo d的命令直接在github上运行，然后直接部署到Github pages上。
+  所以配置好Action后，只要git push，然后浏览器输入username.github.io就可以看到，push上去的文章了。
+##### 新建空库
+
+  先在Github上新建一个仓库，用于存放hexo init生成的源代码；username.github.io是hexo d推送的public/下的所有文件。
+  本地把源代码生成的文件夹，改成与刚健的Github一致，然后初始化：
+```
+$ git init
+	#如果新建的GitHub生成了README文件，或自己添加了其它文件:
+$ git pull origin master --allow-unrelated-histories
+	#如果是空库，直接使用
+$ git remote add origin git@github.com:$(username)/$(Github_Pages_src)
+$ git add --all
+$ git commit -m "upload src file"
+$ git push -u origin master	#即可完成远程与本地同步
+```
+##### 配置库和SSH key
+
+  本地生成ssh key用于Action访问：
+```
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/github-actions-deploy
+```
+  以上生成了一对key，后缀为.pub称为公钥，无后缀的为私钥；
+1. 在 Github Pages 的仓库，**Settings -> Deploy keys **添加刚刚生成的公钥，名称随意，但要勾选 **Allow write access**；
+2. 在新仓库的 **Settings -> Secrets** 里添加刚刚生成的私钥，名称自己能记住是什么意思就行。
+
+##### 源码仓库添加 Actions 配置
+
+  如果在网页编辑配置文件的话，选择Set up a workflow yourself;如果是在本地目录提交配置文件的话，将配置文件存至 .github/workflows/*任意名*.yml。
+```
+
+```
+具体参考：
+ - [Github Actions 测试 - 自动部署 Hexo](https://xiaopc.org/2019/08/29/github-actions-%E6%B5%8B%E8%AF%95-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hexo/)
+ - [GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 
 ### 上次出现问题的现象
 
