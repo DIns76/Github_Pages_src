@@ -1,5 +1,5 @@
 ---
-title: Difference between local and remote site
+title: 这个Hello world不容易
 date: 2020-04-01 23:24:01
 tags: 
     - hexo
@@ -10,7 +10,7 @@ tags:
 
 ### 重新搭建
 
-  本来是已经搭好了在``username.github.io``的blog，但由于直接在源文件下直接练习git操作，导致无法用hexo再次编译了，所以想把文章提取出来然后重新搭建一次，这次边练边加上自动集成并部署的Github Action。
+  本来是已经搭好了在``username.github.io``的blog，但由于直接在源文件下直接练习git操作，导致无法用hexo再次编译了，所以想把文章提取出来然后重新搭建一次，这次边练边加上自动集成并部署的 ``Github Action`` 。
   从头开始使用hexo(因为已经安装过``nodejs``和``hexo``，这个步骤可以在网上查到)：
 ```
 $ hexo init blog_src	#初始化hexo配置文件夹，blog_src为任意名称
@@ -71,10 +71,13 @@ ssh-keygen -t rsa -b 4096 -f ~/.ssh/github-actions-deploy
  - [Github Actions 测试 - 自动部署 Hexo](https://xiaopc.org/2019/08/29/github-actions-%E6%B5%8B%E8%AF%95-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hexo/)
  - [GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 
+
+注意：
+1. 更改git的user.name 和 user.email!!
+2. 亲测，根据以上配置还有一个错误是： ``ERROR Deployer not found: git``
+这个是没有安装hexo-deployer-git库，在安装hexo后加上：
 ```
-注意：1. 更改git的user.name 和 user.email!!
-2. 亲测，根据以上配置还有一个错误是：ERROR Deployer not found: git；这个是没有安装hexo-deployer-git库，在安装hexo后加上：
-	  # install dependencies
+          # install dependencies
           npm i -g hexo-cli
           npm i
           # install hexo-deployer-git
@@ -135,5 +138,8 @@ root: /blog/
 - [删除github中某个文件](https://blog.csdn.net/wudinaniya/article/details/77508229)
 - [Hexo博客搭建](https://code004.ml/posts/how-to-build-a-hexo-blog/)
 - [ Hexo+GitHub 搭建](https://zhuanlan.zhihu.com/p/60578464)
+- [sspai](https://sspai.com/post/54608)
+- [ref about netify](https://kuleyu.github.io/hexolog/post/31808.html)
+
 
 致谢以上所有文章和开源项目贡献者
