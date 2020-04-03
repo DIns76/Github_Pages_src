@@ -10,8 +10,8 @@ tags:
 
 ### 重新搭建
 
-  本来是已经搭好了在username.github.io的blog，但由于直接在源文件下直接练习git操作，导致无法用hexo再次编译了，所以想把文章提取出来然后重新搭建一次，这次边练边加上自动集成并部署的Github Action。
-  从头开始使用hexo(因为已经安装过nodejs和hexo，这个步骤可以在网上查到)：
+  本来是已经搭好了在``username.github.io``的blog，但由于直接在源文件下直接练习git操作，导致无法用hexo再次编译了，所以想把文章提取出来然后重新搭建一次，这次边练边加上自动集成并部署的Github Action。
+  从头开始使用hexo(因为已经安装过``nodejs``和``hexo``，这个步骤可以在网上查到)：
 ```
 $ hexo init blog_src	#初始化hexo配置文件夹，blog_src为任意名称
 INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git
@@ -59,28 +59,39 @@ $ git push -u origin master	#即可完成远程与本地同步
 ```
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/github-actions-deploy
 ```
-  以上生成了一对key，后缀为.pub称为公钥，无后缀的为私钥；
-1. 在 Github Pages 的仓库，**Settings -> Deploy keys **添加刚刚生成的公钥，名称随意，但要勾选 **Allow write access**；
+  以上生成了一对key，后缀为``.pub``称为公钥，无后缀的为私钥；
+1. 在 Github Pages 的仓库，**Settings -> Deploy keys** 添加刚刚生成的公钥，名称随意，但要勾选 **Allow write access** ；
 2. 在新仓库的 **Settings -> Secrets** 里添加刚刚生成的私钥，名称自己能记住是什么意思就行。
 
 ##### 源码仓库添加 Actions 配置
 
-  如果在网页编辑配置文件的话，选择Set up a workflow yourself;如果是在本地目录提交配置文件的话，将配置文件存至 .github/workflows/*任意名*.yml。
-  还是根据以下参考改吧，我自己写的总是``paser error``
+  如果在网页编辑配置文件的话，选择 ``Set up a workflow yourself`` ;如果是在本地目录提交配置文件的话，将配置文件存至 .github/workflows/*任意名*.yml。
+  还是根据以下参考改吧，我自己写的总是``paser error`` ，可能和YAML语法对空格 ``Tab键`` 比较严格，就像 ``Makefile`` 对 ``Tab`` 和空格严格一样。
 具体参考：
  - [Github Actions 测试 - 自动部署 Hexo](https://xiaopc.org/2019/08/29/github-actions-%E6%B5%8B%E8%AF%95-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hexo/)
  - [GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 
+```
+注意：1. 更改git的user.name 和 user.email!!
+2. 亲测，根据以上配置还有一个错误是：ERROR Deployer not found: git；这个是没有安装hexo-deployer-git库，在安装hexo后加上：
+	  # install dependencies
+          npm i -g hexo-cli
+          npm i
+          # install hexo-deployer-git
+          npm install --save hexo-deployer-git
+```
+我写的改动很少，详见[github链接](https://github.com/DIns76/Github_Pages_src/blob/master/.github/workflows/build_and_update_gh_Pages.yml)
+
 ### 上次出现问题的现象
 
-本地运行良好，_config.yml配置也没什么问题，为什么一用hexo d部署好，到线上一查看，什么样式都没有，直接显示成只有文章超链接，点进去还是page not found......
+本地运行良好, ``_config.yml`` 配置也没什么问题，为什么一用 ``hexo d`` 部署好，到线上一查看，什么样式都没有，直接显示成只有文章超链接，点进去还是 ``page not found`` ......
 最重要的是还把我原来的所有commit全部都直接覆盖了......
-hexo-deployer-git这个npm模块，都没有询问机制的？
+``hexo-deployer-git`` 这个npm模块，都没有询问机制的？
 
 ### 解决方案
 
 结合一些参考链接，加上自己仔细回想对这个项目修改了哪？
-看到教程和配置脚本上的注释都说要加个子页面，而我确实修改了_config.yml里的url设置，想着把它改回来：
+看到教程和配置脚本上的注释都说要加个子页面，而我确实修改了 ``_config.yml`` 里的url设置，想着把它改回来：
 ```
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -99,10 +110,10 @@ root: /blog/
 ### 下一步
 
 1. 尝试修改主题中的图和显示字体，字体看起来有点虚,可能加粗点可能会更好
-2. 尝试把非public/下的所有的文件都传到GitHub上
-3. 尝试Travis CI自动部署,或者直接尝试Github Action
-4. 继续学习Markdown语法用于写作；或尝试其它支持github pages的编辑器
-5. 继续学习git使用
+2. ~~尝试把非public/下的所有的文件都传到GitHub上~~
+3. ~~尝试``Travis CI``自动部署,或者直接尝试``Github Action``~~
+4. 继续学习 ``Markdown`` 语法用于写作；或尝试其它支持github pages的编辑器
+5. 继续学习 ``Git`` 使用
     - 了解git历史[10 years of git by atlassian](https://www.atlassian.com/git/articles/10-years-of-git)
     - [Pro Git_cn](https://git-scm.com/book/zh/v2)
 
